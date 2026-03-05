@@ -147,7 +147,17 @@ def stat():
     '''
     return render_template_string(html, count=count, total_time=total_time_str)
 
+# --- 啟動邏輯修正 ---
+
+# 建立一個函式來初始化，避免全域變數報錯導致 Gunicorn 崩潰
+@app.before_request
+def initialize():
+    # 這裡確保只會執行一次
+    if not hasattr(app, '_db_initialized'):
+        init_db()
+        app._db_initialized = True
+
 if __name__ == '__main__':
-    init_db()
+    # 這是給本地測試用的
     port = int(os.environ.get('PORT', 8000))
     app.run(host='0.0.0.0', port=port)

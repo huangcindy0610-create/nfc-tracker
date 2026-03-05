@@ -1,5 +1,14 @@
+# 網頁框架與伺服器
 Flask==3.0.0
 gunicorn==21.2.0
+
+# 資料庫連線 (PostgreSQL)
 psycopg2-binary==2.9.9
+
+# Google Gemini AI 與 圖片處理
+google-generativeai==0.8.3
+Pillow==10.2.0
+
+# 爬蟲與網路請求 (你原本清單中的)
 beautifulsoup4==4.12.2
 requests==2.31.0

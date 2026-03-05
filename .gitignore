@@ -1,2 +1,10 @@
 __pycache__/
+*.pyc
+.env
 .venv/
+env/
+instance/
+
+# 雖然現在用 PostgreSQL，但忽略 SQLite 檔案可防止誤傳本地測試資料
+*.db
+*.sqlite3

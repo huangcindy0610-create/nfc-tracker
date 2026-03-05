@@ -70,12 +70,19 @@ def view():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# 啟動時初始化
+# --- 修正後的啟動區塊 ---
+
 if DATABASE_URL:
     with app.app_context():
-        try: init_db()
-        except: pass
+        try:
+            # 嘗試初始化資料庫
+            init_db()
+            print("資料庫連線並初始化成功！")
+        except Exception as e:
+            # 如果失敗，只印出錯誤但不崩潰
+            print(f"警告：資料庫連線失敗。錯誤訊息: {e}")
 
 if __name__ == '__main__':
+    # 本地測試用
     port = int(os.environ.get('PORT', 8000))
     app.run(host='0.0.0.0', port=port)
